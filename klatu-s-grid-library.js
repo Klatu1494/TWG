@@ -1,4 +1,4 @@
-class lBdGdLHeap {
+class TWGHeap {
   constructor(comparer) {
     this.heap = [null];
     this.comparer = comparer;
@@ -31,7 +31,7 @@ class lBdGdLHeap {
   }
 }
 
-class lBdGdLNode {
+class TWGNode {
   constructor() {
     this.costs = new Map();
   }
@@ -47,7 +47,7 @@ class lBdGdLNode {
   }
 }
 
-class lBdGdLGraph {
+class TWGGraph {
   constructor(nodes) {
     this.nodes = [...nodes];
   }
@@ -55,8 +55,8 @@ class lBdGdLGraph {
   findBestPath(startNode, endNode) {
     var bestSizeSoFar = null;
     for (var node of this.nodes) node.bestPathsToThisNode = [];
-    startNode.bestPathsToThisNode.push(new lBdGdLPath([startNode]));
-    var paths = new lBdGdLHeap((a, b) => a.size / a.nodes.length - b.size / b.nodes.length)
+    startNode.bestPathsToThisNode.push(new TWGPath([startNode]));
+    var paths = new TWGHeap((a, b) => a.size / a.nodes.length - b.size / b.nodes.length)
     paths.insert(startNode.bestPathsToThisNode[0]);
     while (paths.size()) {
       var path = paths.removeFirst();
@@ -78,7 +78,7 @@ class lBdGdLGraph {
   }
 }
 
-class lBdGdLPath {
+class TWGPath {
   constructor(initialNodes) {
     this.nodes = [...initialNodes];
   }
@@ -95,7 +95,7 @@ class lBdGdLPath {
   }
 
   duplicate() {
-    return new lBdGdLPath([...this.nodes]);
+    return new TWGPath([...this.nodes]);
   }
 
   addPath(path) {
