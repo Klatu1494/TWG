@@ -61,7 +61,7 @@ class TWGGraph {
     while (paths.size()) {
       var path = paths.removeFirst();
       for (var adyacentNode of path.nodes[path.nodes.length - 1].costs.keys()) {
-        if (path.nodes.indexOf(adyacentNode) === -1 && path.nodes.length < maxSteps) {
+        if (path.nodes.indexOf(adyacentNode) === -1 && (maxSteps === undefined || path.nodes.length < maxSteps)) {
           var pathBeingAdded = path.duplicate().addNode(adyacentNode);
           if (!bestSizeSoFar || pathBeingAdded.size() <= bestSizeSoFar) {
             if (!adyacentNode.bestPathsToThisNode.length || pathBeingAdded.size() === adyacentNode.bestPathsToThisNode[0].size()) {
